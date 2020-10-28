@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "workspaces": [
+    "./packages/*"
+  ],
+  "dependencies": {
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/vue": "^6.0.26",
+    "babel-loader": "^8.1.0",
+    "lerna": "^3.22.1",
+    "react-is": "^17.0.0",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "lerna": "lerna publish"
+  },
+  "name": "task3-4-3_Storybook"
+}
