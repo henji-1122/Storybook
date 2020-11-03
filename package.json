@@ -3,6 +3,12 @@
   "workspaces": [
     "./packages/*"
   ],
+  "name": "storybook",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "lerna": "lerna publish"
+  },
   "dependencies": {
     "vue": "^2.6.12"
   },
@@ -17,11 +23,5 @@
     "react-is": "^17.0.0",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.12"
-  },
-  "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "lerna": "lerna publish"
-  },
-  "name": "task3-4-3_Storybook"
+  }
 }
