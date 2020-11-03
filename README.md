@@ -7,9 +7,9 @@
     * 一个项目仓库中管理多个模块/包(根目录只放脚手架，所有的组件都放在根目录下的同一个目录下packages,每一个组件在此目录下配置一个子文件夹设置为包，因为所有的组件管理都比较类似相关的配置都放在根目录，不同的组件可能有相同的依赖，只需要下载一份，将来的测试、打包、发布都可以在当前项目进行统一的管理，这样管理项目对组件库的开发会更方便。很多知名的开源库都采用这种管理方式，如vue3、react、angular、babel、react-router、create-react-app...)
 
 * 通过Monorepo的方式组织项目结构，让每个包单独测试、单独发布以及统一管理他们的依赖
-* 通过Monorepo管理项目结构：          
-    packages （所有要开发的组件）              
-    |__button          
+* 通过Monorepo管理项目结构：                  
+    packages （所有要开发的组件）                            
+    |__ button          
     ---|__ > tests：测试相关代码             
     ---|__ > dist：打包的目录                             
     ---|__ > src：当前包的源码(.vue文件)                      
@@ -18,10 +18,10 @@
     ---|__ README.md：相关文档             
     ---|__ api-extractor.json：配置文件          
     ---|__ package.json：包的描述           
-    |__form           
-    |__formItem         
-    |__input         
-    |__steps        
+    |__ form           
+    |__ formItem         
+    |__ input         
+    |__ steps        
 
 
 
