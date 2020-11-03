@@ -10,14 +10,14 @@
 * 通过Monorepo管理项目结构：    
     packages （所有要开发的组件）       
     |__button       
-    ---|____> tests：测试相关代码       
-    ---|____> dist：打包的目录       
-    ---|____> src：当前包的源码(.vue文件)         
-    ---|____ index.js：打包时入口      
-    ---|____ LICENSE：版权，存放开源协议的描述(MIT)       
-    ---|____ README.md：相关文档             
-    ---|____ api-extractor.json：配置文件          
-    ---|____ package.json：包的描述           
+    ---|__> tests：测试相关代码                        
+    ---|__> dist：打包的目录                             
+    ---|__> src：当前包的源码(.vue文件)                      
+    ---|__ index.js：打包时入口                            
+    ---|__ LICENSE：版权，存放开源协议的描述(MIT)       
+    ---|__ README.md：相关文档             
+    ---|__ api-extractor.json：配置文件          
+    ---|__ package.json：包的描述           
     |__form           
     |__formItem         
     |__input         
