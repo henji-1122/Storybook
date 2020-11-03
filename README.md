@@ -1,4 +1,4 @@
-## monorepo的方式来管理的本项目
+### monorepo的方式来管理的本项目
 * 我们开发的组件库为了让别人使用方便会将每个组件打包成单独包发布到NPM上，其他人使用时只需要下载他需要的组件，当然也可以将所有的组件一起打包发布
 * 有两种项目的组织方式
   - Multirepo(Multiple Repository 多仓库)
@@ -25,7 +25,7 @@
 
 
 
-#### yarn storybook
+### yarn storybook
 * Storybook是一个开发组件库必备的开源库
 * 可以将每一个组件想象成一个故事，Storybook就像是讲述一个个故事
 * 安装使用Storybook
@@ -67,7 +67,7 @@
 
 
 
-#### 开启yarn workspace工作区
+### 开启yarn workspace工作区
   - 项目根目录的package.json中开启yarn的工作区          
     "private": true, // 组件库开发完后发布到npm上，而工作区的更目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去               
     "workspaces":  [         
@@ -87,7 +87,7 @@
 
 
 
-#### Lerna
+### Lerna
   当组件都开发完成，想要把组件提交到github或者npm，可以使用lerna，方便把项目中的包统一发布
   * lerna介绍
       - lerna是babel自己用来维护自己的Monorepo并开源出的一个项目
