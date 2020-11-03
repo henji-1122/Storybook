@@ -1,4 +1,4 @@
-###### monorepo的方式来管理的本项目
+## monorepo的方式来管理的本项目
 * 我们开发的组件库为了让别人使用方便会将每个组件打包成单独包发布到NPM上，其他人使用时只需要下载他需要的组件，当然也可以将所有的组件一起打包发布
 * 有两种项目的组织方式
   - Multirepo(Multiple Repository 多仓库)
@@ -7,25 +7,25 @@
     * 一个项目仓库中管理多个模块/包(根目录只放脚手架，所有的组件都放在根目录下的同一个目录下packages,每一个组件在此目录下配置一个子文件夹设置为包，因为所有的组件管理都比较类似相关的配置都放在根目录，不同的组件可能有相同的依赖，只需要下载一份，将来的测试、打包、发布都可以在当前项目进行统一的管理，这样管理项目对组件库的开发会更方便。很多知名的开源库都采用这种管理方式，如vue3、react、angular、babel、react-router、create-react-app...)
 
 * 通过Monorepo的方式组织项目结构，让每个包单独测试、单独发布以及统一管理他们的依赖
-* 通过Monorepo管理项目结构：
-    packages （所有要开发的组件）
-    |__button
-    ---|____> tests：测试相关代码
-    ---|____> dist：打包的目录
-    ---|____> src：当前包的源码(.vue文件)
-    ---|____ index.js：打包时入口
-    ---|____ LICENSE：版权，存放开源协议的描述(MIT)
-    ---|____ README.md：相关文档
-    ---|____ api-extractor.json：配置文件
-    ---|____ package.json：包的描述
-    |__form
-    |__formItem
-    |__input
-    |__steps
+* 通过Monorepo管理项目结构：    
+    packages （所有要开发的组件）       
+    |__button       
+    ---|____> tests：测试相关代码       
+    ---|____> dist：打包的目录       
+    ---|____> src：当前包的源码(.vue文件)         
+    ---|____ index.js：打包时入口      
+    ---|____ LICENSE：版权，存放开源协议的描述(MIT)       
+    ---|____ README.md：相关文档             
+    ---|____ api-extractor.json：配置文件          
+    ---|____ package.json：包的描述           
+    |__form           
+    |__formItem         
+    |__input         
+    |__steps        
 
 
 
-###### yarn storybook
+#### yarn storybook
 * Storybook是一个开发组件库必备的开源库
 * 可以将每一个组件想象成一个故事，Storybook就像是讲述一个个故事
 * 安装使用Storybook
@@ -48,11 +48,11 @@
       * yarn add vue-loader vue-template-compiler --dev
   - 手动安装：看文档
 
-  - 安装完成后storybook就初始化完毕，在package.json中记录了所有的依赖，scripts中初始化了两个命令：
-      "scripts": {
-        "storybook": "start-storybook -p 6006",// 启动storybook
-        "build-storybook": "build-storybook" // 打包生成一个静态的网站
-      }
+  - 安装完成后storybook就初始化完毕，在package.json中记录了所有的依赖，scripts中初始化了两个命令：            
+      "scripts": {          
+        "storybook": "start-storybook -p 6006",// 启动storybook            
+        "build-storybook": "build-storybook" // 打包生成一个静态的网站              
+      }            
   - 使用Monorepo的方式管理项目
   - 编写Storybook中的stories
       * 组件库packages放在项目跟目录下，并给每个组件文件夹下新建一个stories文件夹
@@ -67,12 +67,12 @@
 
 
 
-###### 开启yarn workspace工作区
-  - 项目根目录的package.json中开启yarn的工作区
-    "private": true, // 组件库开发完后发布到npm上，而工作区的更目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去
-    "workspaces":  [
-      "./packages/*"  // 管理的所有包的路径，使用*指定packages下的任意包
-    ]
+#### 开启yarn workspace工作区
+  - 项目根目录的package.json中开启yarn的工作区          
+    "private": true, // 组件库开发完后发布到npm上，而工作区的更目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去               
+    "workspaces":  [         
+      "./packages/*"  // 管理的所有包的路径，使用*指定packages下的任意包           
+    ]             
   - 可以把所有包具有的依赖都安装在工作区根目录下的node_modules中
   - 给工作区根目录安装开发依赖
       * yarn add jest -D -W （jest是Facebook出的单元测试工具，-D是开发依赖，-W是工作区指安装到工作区的根目录）
@@ -87,7 +87,7 @@
 
 
 
-###### Lerna
+#### Lerna
   当组件都开发完成，想要把组件提交到github或者npm，可以使用lerna，方便把项目中的包统一发布
   * lerna介绍
       - lerna是babel自己用来维护自己的Monorepo并开源出的一个项目
