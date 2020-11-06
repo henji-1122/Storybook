@@ -61,11 +61,11 @@
 
   - 安装完成后storybook就初始化完毕，在package.json中记录了所有的依赖，scripts中初始化了两个命令：
     ```js
-        "scripts": {          
-            "storybook": "start-storybook -p 6006", // 启动storybook            
-            "build-storybook": "build-storybook" // 打包生成一个静态的网站              
-        }
-        ```
+    "scripts": {          
+        "storybook": "start-storybook -p 6006", // 启动storybook            
+        "build-storybook": "build-storybook" // 打包生成一个静态的网站              
+    }
+    ```
   - 使用Monorepo的方式管理项目
   - 编写Storybook中的stories
       * 组件库packages放在项目根目录下，并给每个组件文件夹下新建一个stories文件夹
@@ -83,11 +83,11 @@
 ### 开启yarn workspace工作区
   - 项目根目录的package.json中开启yarn的工作区 
     ```js 
-        "private": true, // 组件库开发完后发布到npm上，而工作区的根目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去               
-        "workspaces":  [         
-            "./packages/*"  // 管理的所有包的路径，使用 * 指定packages下的任意包           
-        ] 
-        ```
+    "private": true, // 组件库开发完后发布到npm上，而工作区的根目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去               
+    "workspaces":  [         
+        "./packages/*"  // 管理的所有包的路径，使用 * 指定packages下的任意包           
+    ] 
+    ```
   - 可以把所有包具有的依赖都安装在工作区根目录下的node_modules中
   - 给工作区根目录安装开发依赖
       * yarn add jest -D -W （jest是Facebook出的单元测试工具，-D是开发依赖，-W是工作区指安装到工作区的根目录）
