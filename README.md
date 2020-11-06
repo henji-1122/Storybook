@@ -17,7 +17,8 @@
     * 一个项目仓库中管理多个模块/包(根目录只放脚手架，所有的组件都放在根目录下的同一个目录packages下,每一个组件在此目录下配置一个子文件夹设置为包，因为所有的组件管理都比较类似，相关的配置都放在根目录，不同的组件可能有相同的依赖，只需要下载一份，将来测试、打包、发布都可以在当前项目进行统一的管理，这样管理项目对组件库的开发会更方便。很多知名的开源库都采用这种管理方式，如vue3、react、angular、babel、react-router、create-react-app...)
 
 * 通过Monorepo的方式组织项目结构，让每个包单独测试、单独发布以及统一管理他们的依赖
-* 通过Monorepo管理项目结构：                  
+* 通过Monorepo管理项目结构： 
+    ```JS                 
     packages （所有要开发的组件）                            
     |__ button          
     ---|__ > tests：测试相关代码             
@@ -31,7 +32,8 @@
     |__ form           
     |__ formItem         
     |__ input         
-    |__ steps        
+    |__ steps  
+    ```      
 
 
 
@@ -57,11 +59,13 @@
       * yarn add vue-loader vue-template-compiler --dev
   - 手动安装：看文档
 
-  - 安装完成后storybook就初始化完毕，在package.json中记录了所有的依赖，scripts中初始化了两个命令：            
-      "scripts": {          
-          "storybook": "start-storybook -p 6006", // 启动storybook            
-          "build-storybook": "build-storybook" // 打包生成一个静态的网站              
-      }            
+  - 安装完成后storybook就初始化完毕，在package.json中记录了所有的依赖，scripts中初始化了两个命令：
+        ```js            
+        "scripts": {          
+            "storybook": "start-storybook -p 6006", // 启动storybook            
+            "build-storybook": "build-storybook" // 打包生成一个静态的网站              
+        }  
+        ```          
   - 使用Monorepo的方式管理项目
   - 编写Storybook中的stories
       * 组件库packages放在项目根目录下，并给每个组件文件夹下新建一个stories文件夹
@@ -77,11 +81,13 @@
 
 
 ### 开启yarn workspace工作区
-  - 项目根目录的package.json中开启yarn的工作区          
-    "private": true, // 组件库开发完后发布到npm上，而工作区的根目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去               
-    "workspaces":  [         
-        "./packages/*"  // 管理的所有包的路径，使用 * 指定packages下的任意包           
-    ]             
+  - 项目根目录的package.json中开启yarn的工作区  
+        ```js        
+        "private": true, // 组件库开发完后发布到npm上，而工作区的根目录一般是脚手架，不需要发布，这里是防止意外把根目录的提交内容暴露出去               
+        "workspaces":  [         
+            "./packages/*"  // 管理的所有包的路径，使用 * 指定packages下的任意包           
+        ]   
+        ```        
   - 可以把所有包具有的依赖都安装在工作区根目录下的node_modules中
   - 给工作区根目录安装开发依赖
       * yarn add jest -D -W （jest是Facebook出的单元测试工具，-D是开发依赖，-W是工作区指安装到工作区的根目录）
@@ -152,40 +158,45 @@
         * yarn add jest @vue/test-utils vue-jest babel-jest -D -W
 
     - 配置测试脚本
-        * package.json 配置运行单元测试的脚本                 
-        "scripts": {              
-            "test": "jest",               
-            ....                            
-        } 
+        * package.json 配置运行单元测试的脚本 
+            ```js                
+            "scripts": {              
+                "test": "jest",               
+                ....                            
+            }
+            ``` 
 
     - Jest配置文件
-        * jest.config.js 项目根目录下创建           
-        module.exports = {                 
-            "testMatch": ["**/__tests__/**/*.[jt]s?(x)"],  // jest默认找__tests__下的测试文件            
-            "moduleFileExtensions": [ // 测试文件中导入的文件后缀                        
-                "js",          
-                "json",                 
-                // 告诉jest处理"*.vue"文件           
-                "vue"             
-            ],            
-            "transform": {            
-                // 用'vue-jest'处理'*.vue'文件            
-                ".*\\.(vue)$": "vue-jest",            
-                // 用babel-jest处理js            
-                ".*\\.(js)$": "babel-jest"            
-            }            
-        }  
+        * jest.config.js 项目根目录下创建 
+            ```js          
+            module.exports = {                 
+                "testMatch": ["**/__tests__/**/*.[jt]s?(x)"],  // jest默认找__tests__下的测试文件            
+                "moduleFileExtensions": [ // 测试文件中导入的文件后缀                        
+                    "js",          
+                    "json",                 
+                    // 告诉jest处理"*.vue"文件           
+                    "vue"             
+                ],            
+                "transform": {            
+                    // 用'vue-jest'处理'*.vue'文件            
+                    ".*\\.(vue)$": "vue-jest",            
+                    // 用babel-jest处理js            
+                    ".*\\.(js)$": "babel-jest"            
+                }            
+            }  
+            ```
 
     - Babel配置文件           
-        * babel.config.js 项目根目录下创建            
-        module.exports =  {            
-        presets: [            
-            [            
-                '@babel/preset-env'            
-            ]            
-        ]            
-        } 
-
+        * babel.config.js 项目根目录下创建 
+            ```js          
+            module.exports =  {            
+                presets: [            
+                    [            
+                        '@babel/preset-env'            
+                    ]            
+                ]            
+            } 
+            ```
     - babel桥接
         * 由于项目中安装的babel版本是babel7，而jest依赖的是babel6，所以运行测试时提示找不到babel，还需安装一个babel的桥接
         * 先更改各个包文件夹下的__test__为__tests__因为jest默认找的是__tests__，这相当于是个约定
@@ -235,9 +246,9 @@
     - rollup-plugin-vue@5.1.9（把单文件组件编译成js代码，这里需要指定版本，因为最新版本是把vue3.0的组件编译成js代码）
     - vue-template-compiler（把单文件组件编译成js代码过程中需要编译器）
     - 因为管理的包都需要打包，所以Rollup以及他的插件都需要安装在工作区的根目录中
-    ```bash
+        ```bash
         yarn add rollup rollup-plugin-terser rollup-plugin-vue@5.1.9 vue-template-compiler -D -W
-    ```
+        ```
 * 可以单独打包一个组件，也可以通过一个命令打包所有的组件
 * **Rollup打包所有组件**
     * 如果所有组件一起打包，则还需要安装以下插件：
@@ -245,21 +256,21 @@
         - rollup-plugin-postcss（rollup的插件）
         - @rollup/plugin-node-resolve（在打包的过程中将第三方包的依赖打包进来，如form-item中依赖了async-validate）
         ```bash
-            yarn add @rollup/plugin-json rollup-plugin-postcss @rollup/plugin-node-resolve -D -W
+        yarn add @rollup/plugin-json rollup-plugin-postcss @rollup/plugin-node-resolve -D -W
         ```
     * 在项目根目录下创建rollup.config.js并编写配置，因为当前项目中管理的包打包方式都是一样的，所以可以为所有包动态生成rollup的配置文件
     * 这个配置文件本质上是个node程序，他的作用是为packages下的所有包生成rollup的配置
     * 在根目录的package.json中配置scripts脚本
-     ```bash
+        ```bash
         "script":{
             "build": "rollup -c" // 加载配置文件进行打包
         }
-     ```
+        ```
     * 给packages下的每个包中的package.json中配置main和module，这是打包的出口，也是别人使用这个包的入口
-    ```bash
+        ```bash
         "main": "dist/cjs/index.js", // 存储cjs模块化打包的结果
         "module": "dist/es/index.js", // 存储es模块化打包的结果
-    ```
+        ```
     * 运行测试：yarn build --->此时在dist中生成cs和cjs的打包结果
 * **配置环境变量**
     - 通过环境变量来判断当前是否是开发环境，若果是开发环境的打包不压缩代码           
@@ -268,12 +279,12 @@
         yarn add cross-env -D -W           
         ```           
     - 修改根目录package.json中的打包命令build           
-    ```bash           
+        ```bash           
         "script":{           
             "build:prod": "cross-env NODE_ENV=production rollup -c",           
             "build:dev": "cross-env NODE_ENV=development rollup -c"           
         }           
-    ```           
+        ```           
     - 打包测试：yarn build:prod           
         ```bash           
         yarn build:prod //打包后的代码是被压缩的           
@@ -286,20 +297,26 @@
 ### 清理
 * 清理所有包中的node_modules：使用lerna clean命令
     - 给根目录的package.json中配置scripts脚本
+        ```bash
         "scripts": {
             "clean": "lerna clean"
         }
+        ```
     - 运行清除：yarn clean，确认删除后所有包中的node_modules都被删除
 
 * 清理所有包中的dist：使用第三方包rimraf，指定要删除的目录
     - 安装rimraf(也需要全局安装)             
         yarn add rimraf -D -W               
-    - 给每个包的package.json中配置scripts脚本               
+    - 给每个包的package.json中配置scripts脚本 
+        ```bash              
         "scripts": {                  
             "del": "rimraf dist"              
-        }                
-    - 运行清除，不可能进入每个包进行删除操作，采用yarn workspaces进行统一删除                  
-        yarn workspaces run del                       
+        } 
+        ```               
+    - 运行清除，不可能进入每个包进行删除操作，采用yarn workspaces进行统一删除 
+        ```bash                 
+        yarn workspaces run del       
+        ```                
 
 
 
