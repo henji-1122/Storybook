@@ -1,0 +1,15 @@
+{
+  "name": "wxc-link",
+  "version": "0.0.0",
+  "description": "wxc-link component",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "author": "henji-1122 <2475886163@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+  },
+  "keywords": []
+}

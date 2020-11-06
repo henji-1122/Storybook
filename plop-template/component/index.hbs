@@ -1,0 +1,11 @@
+{{!-- 导入组件 --}}
+import wxc{{properCase name}} from './src/{{name}}.vue'
+
+{{!-- 给组件增加install方法 --}}
+wxc{{properCase name}}.install = Vue => {
+  {{!-- 插件中将组件注册成全局组件 --}}
+  Vue.component(wxc{{properCase name}}.name, wxc{{properCase name}})
+}
+
+{{!-- 导出组件 --}}
+export default wxc{{properCase name}}

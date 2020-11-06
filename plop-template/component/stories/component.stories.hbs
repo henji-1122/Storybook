@@ -1,0 +1,18 @@
+{{!-- 导入组件 --}}
+import wxc{{properCase name}} from '../src/{{name}}.vue'
+
+{{!-- 导出story --}}
+export default {
+  title: 'wxc{{properCase name}}',
+  component: wxc{{properCase name}}
+}
+
+{{!-- 组件的演示 --}}
+export const {{properCase name}} = _ => ({
+  components: { wxc{{properCase name}} },
+  template: `
+    <div>
+      <wxc-{{name}}></wxc-{{name}}>
+    </div>
+  `
+})
